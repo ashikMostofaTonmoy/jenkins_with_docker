@@ -3,12 +3,12 @@
 Open up a terminal window.
 
 - Create a bridge network in Docker using the following docker network create command:
-```
+```sh
 docker network create jenkins
 ```
 
 - write docker file
-```
+```sh
 FROM jenkins/jenkins:2.387.1
 USER root
 RUN apt-get update && apt-get install -y lsb-release
@@ -25,7 +25,7 @@ RUN jenkins-plugin-cli --plugins "blueocean docker-workflow"
 
 - build the image . This incorporates the blueocean plugin
 
-```
+```sh
 docker build -t myjenkins-blueocean:2.387.1-1 .
 ```
 
@@ -33,7 +33,7 @@ Run your own myjenkins-blueocean:2.387.1-1 image as a container in Docker using 
 
 
 
-```
+```sh
 docker run \
   --name jenkins-blueocean \
   --restart=on-failure \
@@ -50,23 +50,25 @@ docker run \
 ```
 
 - go to the location cause it is runing locally
-```
+```sh
 http://localhost:8080/
 http://127.0.0.1:8080/
 ```
 
 - you could access your docker container (through a separate terminal/command prompt window) with a docker exec command like:
 
-```
+```sh
 docker exec -it jenkins-blueocean bash
 ```
 - then go to 
-```
+
+```sh
 cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
 - alternatively as you are running Jenkins in Docker using the official jenkins/jenkins image you can use 
-```
+
+```sh
 sudo docker exec ${CONTAINER_ID or CONTAINER_NAME} cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 to print the password in the console without having to exec into the container.
