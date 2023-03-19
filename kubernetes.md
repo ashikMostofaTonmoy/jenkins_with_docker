@@ -73,12 +73,25 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DCC9EFBF77E11517 \
 use `kubens` to list all available namespace
 ```sh
 kubens
+kubectl get ns # or you can check by this
 kubens <custome-namespace>
 ```` 
 This will change default name space to custome namespace. If you need to check resource from other namespace  use commands like this:
 ```sh
 kubectl get pod -n <default/name-space>
 ```
+### Deploying the Dashboard UI
+https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+The Dashboard UI is not deployed by default. To deploy it, run the following command:
+```sh
+kubectl apply -f https://raw.githubusercont ent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+```
+You can enable access to the Dashboard using the `kubectl` command-line tool, by running the following command:
+```sh
+kubectl proxy
+```
+if there are no previous user created 
+
 ### setup `Ingress`
 
 install ingress controller in miniKube
@@ -86,4 +99,8 @@ install ingress controller in miniKube
 ```sh
 minikube addons enable ingress
 ```
-this automatically implements k8s `nginx` implementation of ingress controller.
+this automatically implements k8s `nginx` implementation of ingress controller. To check if it's running 
+```sh
+kubectl get pod -n kube-system # or in
+kubectl get pod -n ingress-nginx
+```
