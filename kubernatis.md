@@ -1,3 +1,5 @@
+## Kubernatis (K8S)
+
 * to check everythin locally , install `minikube` , a choosen hypervisor according to the os you are on
 * install `kubectl` if not installed by default
 * you may need to restart/logout the pc to take the change effect
@@ -55,19 +57,28 @@ To create namespace:
 ```sh
 kubectl create namespace my-ns
 ```
+> By default everything is installed or configured in `default `namespace.
 
-to change default namespace you may need `kubectx`. to install kubectx
+To change default namespace you may need `kubectx`. To install kubectx
 ```sh
 sudo add-apt-repository 'deb [trusted=yes] http://ftp.de.debian.org/debian buster main' # adding repository
 sudo apt update
 sudo apt install kubectx
 ```
-if public key is missinng when `sudo apt update`, add public key by 
+If public key is missinng when `sudo apt update`, add public key by 
 ```sh
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DCC9EFBF77E11517 \
 # change `DCC9EFBF77E11517` value according to terminal.
 ```
-
+use `kubens` to list all available namespace
+```sh
+kubens
+kubens <custome-namespace>
+```` 
+This will change default name space to custome namespace. If you need to check resource from other namespace  use commands like this:
+```sh
+kubectl get pod -n <default/name-space>
+```
 ### setup `Ingress`
 
 install ingress controller in miniKube
