@@ -1,3 +1,4 @@
+
 ## Kubernatis (K8S)
 
 * to check everythin locally , install `minikube` , a choosen hypervisor according to the os you are on
@@ -104,3 +105,16 @@ this automatically implements k8s `nginx` implementation of ingress controller. 
 kubectl get pod -n kube-system # or in
 kubectl get pod -n ingress-nginx
 ```
+
+### Adding helm repo
+```sh
+helm repo add stable https://charts.helm.sh/stable
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+```
+Install prometheus stack for monitoring
+```sh
+helm install prom-operator-01 prometheus-community/kube-prometheus-stack
+```
+> All of the codes are in here
+> https://gitlab.com/ashikMostofaTonmoy/youtube-tutorial-series-from-nana
