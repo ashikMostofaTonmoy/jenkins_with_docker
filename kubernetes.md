@@ -116,5 +116,11 @@ Install prometheus stack for monitoring
 ```sh
 helm install prom-operator-01 prometheus-community/kube-prometheus-stack
 ```
+To check everything is installed
+```sh
+kubectl get all -n <namespace-name>
+kubectl get configmap
+```
 > All of the codes are in here
 > https://gitlab.com/ashikMostofaTonmoy/youtube-tutorial-series-from-nana
+> Microservice - 149
